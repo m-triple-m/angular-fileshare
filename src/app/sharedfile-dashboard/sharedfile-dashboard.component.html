@@ -1,0 +1,13 @@
+<p class="text-center display-4">Shared TO Me</p>
+    <hr>
+<div class="row">
+    
+    <div class="col-sm-3" *ngFor="let file of sharedfiles">
+        <div class="card">
+            <img [src]="'assets/icons/'+getext(file.file)+'.svg'" class="card-img-top" style="height: 3rem;">
+            <div class="card-body">
+                <p class="h5">{{file.file}}</p>
+            </div>
+        </div>
+    </div>
+</div>

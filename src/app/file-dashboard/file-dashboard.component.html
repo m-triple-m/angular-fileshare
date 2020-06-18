@@ -1,0 +1,57 @@
+<div class="container">
+    <p class="text-center display-4">File Share Dashboard</p>
+    <button mat-raised-button [routerLink]="['/sharefiledash']" routerLinkActive="router-link-active" >Shared to me</button>
+    <mat-card>
+        <mat-card-content class="card-body">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-4 text-center">Filename</div>
+                    <div class="col-1"></div>
+                    <div class="col-3">Modified By</div>
+                    <div class="col-3">Modified</div>
+                </div>
+            </div>
+            <div class="files_area card-body" *ngFor="let file of myfiles;let i = index">
+                <div class="row align-items-center">
+                    <div class="col-1">
+                        <img [src]="'assets/icons/'+getext(file.file)+'.svg'" class="img-fluid" style="height: 3rem;">
+                    </div>
+                    <div class="col-2">
+                        <p class="h5 mx-auto">{{file.created | date}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p class="mx-auto">{{getSize(file.size)}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p class="mx-auto"><a [href]="'http://localhost:3000/files/'+file.name" class="btn btn-primary">
+                            <!-- <fa-icon [icon]="down"></fa-icon> -->
+                        </a></p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3" *ngFor="let file of myfiles;">
+                    <div class="card" (click)="toggleshowDetails(file)">
+                        <img [src]="'assets/icons/'+getext(file.file)+'.svg'" class="card-img-top">
+                        <div class="card-body">
+                            <p class="h4">{{file.file}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    
+    
+    <mat-card>
+        <mat-card-content class="card-body">
+            <input type="file" (change)="onFileChanged($event)" multiple>
+        </mat-card-content>
+    </mat-card>
+
+    <app-file-details *ngIf="showDetails" [filedata]="selectedFile"></app-file-details>
+    
+</div>
+

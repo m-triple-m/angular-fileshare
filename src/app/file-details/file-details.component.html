@@ -1,0 +1,26 @@
+<div class="file-details">
+    <mat-card>
+        <mat-card-content class="card-body">
+            <p class="text-center h2">File Details</p>
+            <hr class="mb-5">
+
+            Name : {{file.file}}
+
+            Share To : <input #username>
+            <button mat-raised-button (click)="shareFile(username.value)">Share</button>
+            <button mat-raised-button (click)="shareFile(username.value)">Download</button>
+
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-content class="card-body">
+            <p class="h2 text-center">Shared Users</p>
+            <ul class="list-group">
+                <li class="list-group item" *ngFor="let user of file.sharedto">
+                    <p class="h4">{{user.name}}</p>
+                </li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+</div>
